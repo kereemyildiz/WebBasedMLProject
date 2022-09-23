@@ -1,8 +1,12 @@
 from flask import Flask, request, url_for, redirect, render_template
+from flask_cors import CORS
 import pandas as pd
 import pickle
 
 app = Flask(__name__)
+
+CORS(app)
+
 
 model = pickle.load(open("example_weights_knn.pkl", "rb"))
 
@@ -30,9 +34,9 @@ def predict():
     output = str(float(output)*100) + '%'
 
     if output > str(0.5):
-        return render_template('result.html', pred=f"You have the following chance of having diabetes: {output}.")
+        return f"You have the following chance of having diabetes: {output}."
     else:
-        return render_template('result.html', pred=f"You have low change of having diabetes: {output}.")
+        return f"You have low change of having diabetes: {output}."
 
 
 if __name__ == '__main__':
