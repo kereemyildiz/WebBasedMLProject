@@ -1,7 +1,16 @@
 import { useState } from "react";
 
 function Form() {
-	const [form, setForm] = useState({ name: "", email: "" });
+	const [form, setForm] = useState({
+		pregnancies: "",
+		glucose: "",
+		blood_pressure: "",
+		skin_thickness: "",
+		insulin_level: "",
+		bmi: "",
+		diabetes_pedigree: "",
+		age: "",
+	});
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log("Form submitted");
@@ -11,14 +20,56 @@ function Form() {
 		const name = event.target.name;
 		const value = event.target.value;
 
-		console.log(`event.target.name: ${name}, event.target.value: ${value}`);
-
 		setForm({ ...form, [name]: value });
 	};
 	return (
 		<form onSubmit={handleSubmit}>
-			<input type="text" name="name" onChange={onChange} />
-			<input type="email" name="email" onChange={onChange} />
+			<h4>Diabetes Prediction Model</h4>
+			<p>Example to Predict Probability of Diabetes</p>
+			<input
+				type="number"
+				name="pregnancies"
+				onChange={onChange}
+				placeholder="Num of Pregnancies"
+			/>
+			<input
+				type="number"
+				name="glucose"
+				onChange={onChange}
+				placeholder="Glucose level"
+			/>
+			<input
+				type="number"
+				name="blood_pressure"
+				onChange={onChange}
+				placeholder="Blood Pressure"
+			/>
+			<input
+				type="number"
+				name="skin_thickness"
+				onChange={onChange}
+				placeholder="Skin Thickness"
+			/>
+			<input
+				type="number"
+				name="insulin_level"
+				onChange={onChange}
+				placeholder="Insulin Level"
+			/>
+			<input
+				type="number"
+				name="bmi"
+				onChange={onChange}
+				placeholder="Body Mass Index(BMI)"
+			/>
+			<input
+				type="number"
+				name="diabetes_pedigree"
+				onChange={onChange}
+				placeholder="Diabetes Pedigree"
+			/>
+			<input type="number" name="age" onChange={onChange} placeholder="Age" />
+
 			<button type="submit">Submit Form</button>
 		</form>
 	);
